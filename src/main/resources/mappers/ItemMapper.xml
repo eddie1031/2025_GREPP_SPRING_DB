@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.eddie.dao.dao.mybatis.ItemMapper">
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO items
+            (name, code, price)
+        VALUES
+            (#{name}, #{itemCode}, #{price})
+    </insert>
+
+    <update id="update">
+        UPDATE
+            items
+        SET
+            price = #{price}
+        WHERE
+            item_id = #{id}
+    </update>
+
+    <select id="findByItemCode" resultType="Items">
+        SELECT
+            i.item_id as id,
+            i.name,
+            i.code as itemCode,
+            i.price,
+            i.created_at as createdAt
+        FROM
+            items i
+        WHERE
+            i.code = #{itemCode}
+    </select>
+
+    <delete id="remove">
+        DELETE FROM items i
+        WHERE
+            i.item_id = #{id}
+    </delete>
+
+</mapper>
