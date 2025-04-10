@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ItemMapper {
 
     void save(Items items);
-    void update(@Param("id") Long id, @Param("price") Integer price);
+    int update(@Param("itemCode")String itemCode, @Param("price") Integer price);
     Optional<Items> findByItemCode(@Param("itemCode")String itemCode);
     void remove(Items items);
 

@@ -19,8 +19,8 @@ public class MyBatisItemRepository {
         return items;
     }
 
-    public void updatePrice(Long id, Integer price) {
-        mapper.update(id, price);
+    public void updatePrice(String itemCode, Integer price) {
+        mapper.update(itemCode, price);
     }
 
     public Optional<Items> findByItemCode(String itemCode) {

@@ -16,7 +16,7 @@
         SET
             price = #{price}
         WHERE
-            item_id = #{id}
+            code = #{itemCode}
     </update>
 
     <select id="findByItemCode" resultType="Items">

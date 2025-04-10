@@ -1,21 +1,27 @@
 package io.eddie.dao.global.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
-@NoArgsConstructor
+@Entity
+@Table(name = "items")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Items {
 
+    @Id
+    @Column(name = "item_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String itemCode;
 
+    @Setter
     private Integer price;
 
     private LocalDateTime createdAt;

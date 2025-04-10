@@ -103,5 +103,44 @@ class MyBatisItemRepositoryTests {
 
     }
 
+    @Test
+    @DisplayName("정확한 item code와 변경하고자 하는 가격이 주어지면 변경된다")
+    void it_will_change() throws Exception {
+
+        final String VALID_ITEM_CODE = TestUtils.genRandomItemCode();
+        final String INVALID_ITEM_CODE = "INVALID_ITEM_CODE";
+
+        final int TARGET_PRICE = 10_000;
+
+        Items updated = Items.builder()
+                .name(VALID_ITEM_CODE)
+                .itemCode(VALID_ITEM_CODE)
+                .price(TARGET_PRICE)
+                .build();
+
+        when(mapper.update(any(String.class), any(Integer.class))).thenReturn(1);
+        when(mapper.findByItemCode(VALID_ITEM_CODE)).thenReturn(Optional.of(updated));
+
+        repository.updatePrice(VALID_ITEM_CODE, TARGET_PRICE);
+
+        Optional<Items> itemOptional = repository.findByItemCode(VALID_ITEM_CODE);
+        assertThat(itemOptional.isPresent()).isTrue();
+        assertThat(itemOptional.get()).isEqualTo(updated);
+        assertThat(itemOptional.get().getPrice()).isEqualTo(TARGET_PRICE);
+
+        when(mapper.findByItemCode(INVALID_ITEM_CODE)).thenReturn(Optional.empty());
+
+        Optional<Items> invalidItemOptional = repository.findByItemCode(INVALID_ITEM_CODE);
+        assertThat(invalidItemOptional.isPresent()).isFalse();
+        assertThatThrownBy(
+                () -> {
+                    invalidItemOptional.get();
+                }
+        ).isInstanceOf(NoSuchElementException.class);
+
+    }
+
+
+
 
 }
