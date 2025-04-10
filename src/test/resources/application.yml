@@ -5,6 +5,10 @@ spring:
     password: day
 
 
-
+mybatis:
+  type-aliases-package: io.eddie.dao.global.entity
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mappers/*.xml
 
 
