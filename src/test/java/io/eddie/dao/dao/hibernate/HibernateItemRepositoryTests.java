@@ -134,12 +134,6 @@ class HibernateItemRepositoryTests {
 
         repository.saveAll(items);
 
-
     }
-
-
-
-
-
 
 }

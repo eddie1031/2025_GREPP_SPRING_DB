@@ -20,7 +20,7 @@ public class Items {
 
     private String name;
 
-//    @Column(nullable = false, unique = true)
+    @Column(name = "code", nullable = false, unique = true)
     private String itemCode;
 
     @Setter
