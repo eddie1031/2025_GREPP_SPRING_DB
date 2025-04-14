@@ -1,6 +1,8 @@
 package io.eddie.dao.util;
 
 import io.eddie.dao.global.entity.Items;
+import io.eddie.dao.global.entity.OrderItems;
+import io.eddie.dao.global.entity.Orders;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +54,16 @@ public class TestUtils {
 //        return  IntStream.range(0, amount)
 //                .mapToObj(i -> generateItem())
 //                .toList();
+    }
+
+    public static List<OrderItems> genOrderItems(Orders order, List<Items> items, int amount) {
+            return items.stream()
+                    .map( i -> OrderItems.builder()
+                            .orders(order)
+                            .quantity(amount)
+                            .items(i)
+                            .build()
+                    ).toList();
     }
 
 

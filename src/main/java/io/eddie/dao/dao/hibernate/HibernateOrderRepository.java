@@ -25,7 +25,7 @@ public class HibernateOrderRepository {
         return orders;
     }
 
-    public Optional<Orders> findByOrderCode(String orderCode) {
+    public Optional<Orders> findOrderByOrderCode(String orderCode) {
         return entityManager.createQuery("select o from Orders o where o.orderCode = :orderCode", Orders.class)
                 .setParameter("orderCode", orderCode)
                 .getResultList()
@@ -35,7 +35,7 @@ public class HibernateOrderRepository {
 
     public Long removeOrderByOrderCode(String orderCode) {
 
-        Optional<Orders> orderOptional = findByOrderCode(orderCode);
+        Optional<Orders> orderOptional = findOrderByOrderCode(orderCode);
 
 //        if (orderOptional.isEmpty()) {
 //            throw new NoSuchElementException();

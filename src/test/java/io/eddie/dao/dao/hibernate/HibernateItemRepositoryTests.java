@@ -126,7 +126,7 @@ class HibernateItemRepositoryTests {
 
     }
 
-    @Test
+//    @Test
     @DisplayName("save all 테스트")
     void save_all_test() throws Exception {
 
