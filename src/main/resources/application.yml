@@ -5,6 +5,11 @@ spring:
     username: happy
     password: day
 
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+
 mybatis:
   type-aliases-package: io.eddie.dao.global.entity
   configuration:

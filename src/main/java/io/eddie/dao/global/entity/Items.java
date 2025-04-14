@@ -19,12 +19,14 @@ public class Items {
     private Long id;
 
     private String name;
+
+//    @Column(nullable = false, unique = true)
     private String itemCode;
 
     @Setter
     private Integer price;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Builder
     public Items(String name, String itemCode, Integer price) {
